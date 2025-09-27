@@ -143,7 +143,7 @@ class GA_deap:
             print('Covariance matrix \n', self.cov)
             # set errors:
             for i, pars in enumerate(self.params):
-                pars.setError(sp.sqrt(self.cov[i, i]))
+                pars.setError(np.sqrt(self.cov[i, i]))
 
             with open('{}.cov'.format(self.outputname), 'w') as f:
                 np.savetxt(f, self.cov, fmt='%.4e', delimiter=',')

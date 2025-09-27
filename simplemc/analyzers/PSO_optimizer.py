@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import scipy.linalg as la
 import numpy as np
 import scipy as sp
+import numpy as np
 
 class PSO_optimizer():
     """
@@ -61,8 +62,10 @@ class PSO_optimizer():
         self.outputname = outputname
         self.params = like.freeParameters()
         self.vpars = [p.value for p in self.params]
-        self.npars = [p.name for p in self.params]
-        self.sigma = sp.array([p.error for p in self.params])
+        self.sigma = np.array([p.error for p in self.params])
+        self.bounds = [p.bounds for p in self.params]
+        self.pso_bounds = list(zip(*self.bounds))
+        print("Minimizing...", self.vpars, "with pso bounds", self.pso_bounds)
         self.cov = None
 
         bounds = [p.bounds for p in self.params]
